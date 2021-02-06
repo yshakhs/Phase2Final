@@ -68,3 +68,67 @@ puts t1.owner
 puts t1.message
 puts t1.get_hashtags
 puts t1.to_s
+
+class Tweeter
+
+    attr_accessor :users, :tweets
+	def initialize ()  
+        @users = []
+        @tweets = []
+    
+	end 
+
+    def signup(id, password, firstname, lastname)
+        @users.each do | user |
+	    if user.include? id
+                    false
+            end
+            Utemp=User.new(id, password, firstname, lastname)
+            @users +=[[id, password, firstname, lastname]]
+            true
+        end
+	end
+
+    
+    def signin(id, password)
+        @users.each do | user |
+            if user[0]== id and user[1]== password
+            true
+        end
+        nil
+    end
+
+    def add_tweet(user, message)
+
+        Tweet.new(user, message)
+    @tweets+=[message]
+    end
+
+    def to_str
+
+        if tweets.length()>20
+            lengths=tweets.length()
+            beginin=lengths-20
+        tweet1 = tweets.split[beginin..lengths]
+        tweets1.each do | tweet |
+            puts tweet
+        end
+        else
+            @tweets.each do | tweet |
+                puts tweet
+            end
+        end
+
+    end
+
+end
+
+
+
+
+
+
+
+
+
+
