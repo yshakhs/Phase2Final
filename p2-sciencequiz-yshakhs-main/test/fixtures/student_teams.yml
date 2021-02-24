@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: one
+  team_id: one
+  start_date: 2021-02-24
+  end_date: 2021-02-24
+  position: 1
+  active: false
+
+two:
+  student_id: two
+  team_id: two
+  start_date: 2021-02-24
+  end_date: 2021-02-24
+  position: 1
+  active: false
