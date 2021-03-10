@@ -50,21 +50,17 @@
         1,
         null
       ],
-      "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/child.rb": [
+      "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/task.rb": [
+        1,
+        1,
         1,
         null,
         1,
         1,
         null,
-        1,
-        1,
         null,
         3,
         2,
-        null,
-        1,
-        3,
-        null,
         null,
         null
       ],
@@ -80,10 +76,22 @@
         1,
         null
       ],
-      "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/task.rb": [
+      "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/child.rb": [
+        1,
+        null,
         1,
         1,
+        null,
         1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/controllers/application_controller.rb": [
@@ -322,6 +330,6 @@
         0
       ]
     },
-    "timestamp": 1615411756
+    "timestamp": 1615415277
   }
 }
