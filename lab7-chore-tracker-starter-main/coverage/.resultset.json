@@ -53,6 +53,11 @@
       "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/child.rb": [
         1,
         null,
+        1,
+        1,
+        null,
+        1,
+        1,
         null
       ],
       "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/application_record.rb": [
@@ -61,10 +66,14 @@
         null
       ],
       "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/chore.rb": [
-        0,
-        0
+        null,
+        null,
+        null,
+        null
       ],
       "/Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/app/models/task.rb": [
+        0,
+        0,
         0,
         0
       ],
@@ -304,6 +313,6 @@
         0
       ]
     },
-    "timestamp": 1615410097
+    "timestamp": 1615410868
   }
 }
