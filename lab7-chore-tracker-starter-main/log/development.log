@@ -171,3 +171,44 @@ true by adding the following to your application.rb file:
   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
   [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-03-10 19:48:39.564788"], ["key", "environment"]]
   [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from <top (required)> at /Users/yaraalshakhs/Desktop/lab7-chore-tracker-starter-main/config/environment.rb:5)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChild Create (1.5ms)[0m  [1m[32mINSERT INTO "children" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Alex"], ["last_name", "Heimann"], ["created_at", "2021-03-10 22:34:38.801617"], ["updated_at", "2021-03-10 22:34:38.801617"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChild Create (0.6ms)[0m  [1m[32mINSERT INTO "children" ("first_name", "last_name", "active", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "Rachel"], ["last_name", "Heimann"], ["active", "f"], ["created_at", "2021-03-10 22:34:38.831449"], ["updated_at", "2021-03-10 22:34:38.831449"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChild Create (0.9ms)[0m  [1m[32mINSERT INTO "children" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Mark"], ["last_name", "Heimann"], ["created_at", "2021-03-10 22:34:38.840842"], ["updated_at", "2021-03-10 22:34:38.840842"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "points", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Wash dishes"], ["points", 1], ["created_at", "2021-03-10 22:34:48.158573"], ["updated_at", "2021-03-10 22:34:48.158573"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "points", "active", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Stack wood"], ["points", 1], ["active", "f"], ["created_at", "2021-03-10 22:34:48.165092"], ["updated_at", "2021-03-10 22:34:48.165092"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "points", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sweep floor"], ["points", 1], ["created_at", "2021-03-10 22:34:48.170381"], ["updated_at", "2021-03-10 22:34:48.170381"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "points", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Shovel driveway"], ["points", 3], ["created_at", "2021-03-10 22:34:48.175166"], ["updated_at", "2021-03-10 22:34:48.175166"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("name", "points", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Mow grass"], ["points", 2], ["created_at", "2021-03-10 22:34:48.181021"], ["updated_at", "2021-03-10 22:34:48.181021"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChild Load (0.5ms)[0m  [1m[34mSELECT  "children".* FROM "children" WHERE "children"."active" = ? LIMIT ?[0m  [["active", "t"], ["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
