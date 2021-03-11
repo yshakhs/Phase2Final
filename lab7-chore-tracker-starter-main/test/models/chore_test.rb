@@ -54,10 +54,5 @@ class ChoreTest < ActiveSupport::TestCase
       assert_equal "Pending", @mc1.status
     end
 
-    #should "have name points for ompleted chores combined" do
-    #    assert_equal "Alex Heimann", @alex.name
-    #    assert_equal "Mark Heimann", @mark.names
-    #    assert_equal "Rachel Heimann", @rachel.name
-    #  end
   end
 end
