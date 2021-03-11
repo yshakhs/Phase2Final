@@ -15,8 +15,6 @@ scope :done, -> { where(completed: true)}
 scope :upcoming, -> { where("due_on >=?",Date.current) }
 scope :past, -> { where("due_on <?", Date.current) }
 
-scope :status, ->(id) { where("animal_id = ?", id) }
-
 
 def status
     return "Completed" if self.completed
