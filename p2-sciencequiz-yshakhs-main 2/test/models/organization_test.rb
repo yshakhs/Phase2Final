@@ -7,12 +7,13 @@ class OrganizationTest < ActiveSupport::TestCase
   should have_many(:student_teams).through(:students)
   should have_many(:student_teams).through(:teams)
 
+  #validations
   should validate_presence_of(:name)
   should validate_presence_of(:street_1)
   should validate_presence_of(:zip)
   should validate_presence_of(:short_name)
   should validate_uniqueness_of(:short_name)
-  should validate_format_of(:zip)
+  should validate_confirmation_of(:zip)
 
 
   #context
