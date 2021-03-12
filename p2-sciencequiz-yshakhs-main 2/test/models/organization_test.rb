@@ -25,7 +25,9 @@ class OrganizationTest < ActiveSupport::TestCase
     teardown do
       destroy_organizations
     end
+
+    #test scopes, validations, and methods.
   # test "the truth" do
   #   assert true
-  # end
+   end #end of context
 end

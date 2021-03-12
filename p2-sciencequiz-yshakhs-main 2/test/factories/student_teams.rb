@@ -1,4 +1,4 @@
-sFactoryBot.define do
+FactoryBot.define do
     factory :student_team do
 
     end
