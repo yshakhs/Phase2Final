@@ -23,10 +23,12 @@ should_not allow_value(2).for(:division)
 
   context "Given context" do 
     setup do 
+      create_organizations
       create_teams
     end 
 
     teardown do
+      destroy_organizations
       destroy_teams
     end
 

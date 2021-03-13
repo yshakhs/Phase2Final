@@ -4,7 +4,7 @@ class StudentTeam < ApplicationRecord
 
   validates_date :start_date
   validates_presence_of :position
-  validates_presence_of :student_id, :team_i
+  validates_presence_of :student_id, :team_id
 
   validate :student_is_active_in_system
   validate :team_is_active_in_system
@@ -33,12 +33,23 @@ class StudentTeam < ApplicationRecord
       self.save!
   end
 
-  def end_previous_team_assignment
-
-  end
-
+  
+  
+  # Callback (to handle in sqlite what we would have done in a postrges trigger)
+ # before_create :set_end_date_of_old_cost
 
   private
+
+  #callbacks
+ def end_previous_team_assignment
+#  previous = StudentTeam.current.for_procedure(self.procedure_id).take
+ end
+
+# def set_end_date_of_old_cost
+#  previous = ProcedureCost.current.for_procedure(self.procedure_id).take
+#  previous.update_attribute(:end_date, self.start_date) unless previous.nil?
+# end
+
   def student_is_active_in_system
     # get an array of all active students in the system
     all_student_ids = Student.active.all.map{|s| s.id}

@@ -3,7 +3,7 @@ class Student < ApplicationRecord
   has_and_belongs_to_many :teams
 
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :, :last_name
   validates_presence_of :organization_id
   validates_presence_of :grade
 
@@ -18,9 +18,9 @@ class Student < ApplicationRecord
   scope :inactive, -> { where(active: false) }
   scope :alphabetical, -> { order('last_name, first_name') }
   
-  joins(:task).order('name')
-  scope :juniors, -> { where(division: 'junior') }
-  scope :seniors, -> { where(division: 'senior') }
+  # joins(:task).order('name')
+  #scope :juniors, -> { where(division: 'junior') }
+  #scope :seniors, -> { where(division: 'senior') }
 
 
 
