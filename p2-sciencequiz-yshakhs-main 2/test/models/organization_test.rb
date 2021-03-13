@@ -15,6 +15,12 @@ class OrganizationTest < ActiveSupport::TestCase
   should validate_uniqueness_of(:short_name)
   should validate_confirmation_of(:zip)
 
+  should allow_value('Alabama').for(:state)
+  should allow_value('AL').for(:state)
+  should allow_value('Colorado').for(:state)
+  should_not allow_value("colorado").for(:state)
+  should_not allow_value('txas').for(:state)
+  should_not allow_value(3.14159).for(:state)
 
   #context
 
@@ -28,6 +34,19 @@ class OrganizationTest < ActiveSupport::TestCase
     end
 
     #test scopes, validations, and methods.
+
+    should "scope to return only active organizations" do
+      assert_equal ["Carnegie Mellon University", "TAMU" ], Organization.active.map{|o| o.name}.sort
+    end
+    should "scope to return only inactive organizations" do
+      assert_equal ["Cornell Medicine"], Organization.inactive.map{|o| o.name}.sort
+    end   
+ 
+    should "have a scope to alphabetize organizations by name" do
+      assert_equal ["Carnegie Mellon University", "Cornell Medicine", "TAMU"], Organization.alphabetical.map{|o| o.name}
+    end
+
+
   # test "the truth" do
   #   assert true
    end #end of context

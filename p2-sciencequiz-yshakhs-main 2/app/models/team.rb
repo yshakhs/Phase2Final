@@ -13,7 +13,7 @@ class Team < ApplicationRecord
   scope :alphabetical, -> { order('name') }
   scope :juniors, -> { where(division: Junior) }
   scope :seniors, -> { where(division: Senior) }
-  
+
   validates_inclusion_of :division, in: %w[Junior Senior], message: "is not an option"
 
 

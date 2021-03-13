@@ -3,7 +3,7 @@ module Contexts
   
         def create_teams
             @team1 = FactoryBot.create(:team, organization: @tamu) #default team
-            @team2 = FactoryBot.create(:team, name: "Team 1", organization: @tamu , division: "Senior" , active: true )
+            @team2 = FactoryBot.create(:team, name: "Team 1", organization: @tamu , division: "Senior" )
             @team3 = FactoryBot.create(:team, name: "Team 2", organization: @cmu , division: "Junior" , active: false )
 
         end
