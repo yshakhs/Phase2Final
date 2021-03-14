@@ -3,6 +3,7 @@ require 'test_helper'
 class ChoreTest < ActiveSupport::TestCase
   should belong_to(:child)
   should belong_to(:task)
+  
   should allow_value(1.day.from_now.to_date).for(:due_on)
   should allow_value(1.day.ago.to_date).for(:due_on)
   should allow_value(Date.current).for(:due_on)
