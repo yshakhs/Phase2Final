@@ -54,7 +54,7 @@ class StudentTeam < ApplicationRecord
     # get an array of all active students in the system
     all_student_ids = Student.active.all.map{|s| s.id}
     # add error unless the student id of the team is in the array of active students
-    unless  all_student_ids.include?(self.student_id_id)
+    unless  all_student_ids.include?(self.student_id)
       errors.add(:student, "is not an active student in the system")
     end
   end
@@ -63,7 +63,7 @@ class StudentTeam < ApplicationRecord
     # get an array of all active teams in the system
     all_team_ids = Team.active.all.map{|t| t.id}
     # add error unless the team id of the team is in the array of active teams
-    unless all_team_ids.include?(self.team_id_id)
+    unless all_team_ids.include?(self.team_id)
       errors.add(:team, "is not an active team in the system")
     end
   end

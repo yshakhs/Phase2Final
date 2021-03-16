@@ -37,7 +37,7 @@ class Team < ApplicationRecord
     # get an array of all active organizations in the system
     all_org_ids = Organization.active.all.map{|o| o.id}
     # add error unless the organization id of the team is in the array of active organizations
-    unless all_org_ids.include?(self.organization_id_id)
+    unless all_org_ids.include?(self.organization_id)
       errors.add(:organization, "is not an active organization in the system")
     end
   end

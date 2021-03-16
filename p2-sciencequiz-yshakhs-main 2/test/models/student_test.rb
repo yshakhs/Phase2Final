@@ -52,7 +52,7 @@ class StudentTest < ActiveSupport::TestCase
     should "have name methods that list last_ and first_names combined" do
       assert_equal "Al-shakhs Mai", @student1.name
       assert_equal "Al-zeyara Maha", @student2.name
-      assert_equal "Al-maadeed Khalwa", @student3.name
+      assert_equal "Al-maadeed Khawla", @student3.name
     end
 
     should "have name methods that list first_ and last_names combined" do
