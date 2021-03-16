@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   belongs_to :organizations
-  belongs_to :organizations
-  has_and_belongs_to_many :students
+  has_many :student_teams
+  has_many(:students).through(:student_teams)
 
   validates_presence_of :name
   validates_presence_of :organization_id
@@ -11,10 +11,10 @@ class Team < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :alphabetical, -> { order('name') }
-  scope :juniors, -> { where(division: Junior) }
-  scope :seniors, -> { where(division: Senior) }
+  scope :juniors, -> { where(division: 'junior') }
+  scope :seniors, -> { where(division: 'senior') }
 
-  validates_inclusion_of :division, in: %w[Junior Senior], message: "is not an option"
+  validates_inclusion_of :division, in: %w['junior', 'senior'], message: "is not an option"
 
 
   def make_active

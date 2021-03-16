@@ -1,9 +1,9 @@
 class Student < ApplicationRecord
   belongs_to :organizations
-  has_and_belongs_to_many :teams
+  has_many :student_teams
+  has_many(:teams).through(:student_teams)
 
-
-  validates_presence_of :, :last_name
+  validates_presence_of :first_name, :last_name
   validates_presence_of :organization_id
   validates_presence_of :grade
 

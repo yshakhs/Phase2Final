@@ -4,8 +4,9 @@ class TeamTest < ActiveSupport::TestCase
 
 #matchers
 should belong_to(:organizations)
-should belong_to(:organizations)
-should have_and_belong_to_many(:students)
+should have_many(:student_teams) 
+should have_many(:students).through(:student_teams)
+
 
 #validations
 should validate_presence_of(:name)
@@ -13,13 +14,16 @@ should validate_presence_of(:organization_id)
 should validate_presence_of(:division)
 
 #inclusion of division
-should allow_value('Senior').for(:division)
-should allow_value('Junior').for(:division)
-should_not allow_value("senior").for(:division)
+should allow_value('senior').for(:division)
+should allow_value('junior').for(:division)
+should_not allow_value("Senior").for(:division)
 should_not allow_value('1').for(:division)
 should_not allow_value(2).for(:division)
 
-  #context
+should validate_inclusion_of(:division).in_array(["senior", "junior"])
+
+
+#context
 
   context "Given context" do 
     setup do 

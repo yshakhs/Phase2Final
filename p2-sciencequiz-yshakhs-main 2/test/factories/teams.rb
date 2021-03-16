@@ -2,7 +2,7 @@ FactoryBot.define do
     factory :team do
       name { "engineer" }
       association :organization
-      division { "Senior" }
+      division { "senior" }
       active { true }
     end
   end

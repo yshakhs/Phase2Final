@@ -3,7 +3,8 @@ require 'test_helper'
 class StudentTest < ActiveSupport::TestCase
   #matchers
   should belong_to(:organizations)
-  should have_and_belong_to_many(:teams)
+  should have_many(:student_teams) 
+  should have_many(:teams).through(:student_teams)
   
   #validations
   should validate_presence_of(:first_name)
