@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StudentTest < ActiveSupport::TestCase
   #matchers
-  should belong_to(:organizations)
+  should belong_to(:organization)
   should have_many(:student_teams) 
   should have_many(:teams).through(:student_teams)
   
@@ -10,8 +10,9 @@ class StudentTest < ActiveSupport::TestCase
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
   should validate_presence_of(:organization_id)
-  should validate_presence_of(:grade)
-  
+  should validate_presence_of(:grade)                 
+
+
   #inclusion of grade resistence
   should allow_value(3).for(:grade)
   should allow_value(12).for(:grade)
@@ -20,7 +21,6 @@ class StudentTest < ActiveSupport::TestCase
   should_not allow_value(-2).for(:grade)
   should_not allow_value(0).for(:grade)
   should_not allow_value(22).for(:grade)
-  should_not allow_value().for(:grade)
   should_not allow_value(" ").for(:grade)
   should_not allow_value("seven").for(:grade)
 
@@ -33,8 +33,8 @@ class StudentTest < ActiveSupport::TestCase
     end 
 
     teardown do
-      destroy_organizations
       destroy_students
+      destroy_organizations
     end
 
     should "have a scope to show active students" do
@@ -60,6 +60,17 @@ class StudentTest < ActiveSupport::TestCase
       assert_equal "Maha Al-zeyara", @student2.proper_name
       assert_equal "Khawla Al-maadeed", @student3.proper_name
     end
+
+    should "have a method to make inactive" do
+      @student2.make_inactive
+      assert_equal ["Al-maadeed", "Al-zeyara"], Student.inactive.alphabetical.map{|t| t.last_name}
+    end
+
+    should "have a method to make active" do
+      @student2.make_active
+      assert_equal ["Al-shakhs", "Al-zeyara"], Student.active.alphabetical.map{|t| t.last_name}
+    end
+
 
     # test the custom validation 'organization_is_active_in_system'
     should "identify a non-active organization as invalid" do

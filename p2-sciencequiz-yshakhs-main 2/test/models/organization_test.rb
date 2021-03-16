@@ -2,8 +2,8 @@ require 'test_helper'
 
 class OrganizationTest < ActiveSupport::TestCase
   #matchers
-  should have_many(:students)
-  should have_many(:teams)
+  should have_many :students 
+  should have_many :teams
 
 
   #validations
@@ -43,7 +43,7 @@ class OrganizationTest < ActiveSupport::TestCase
     #test scopes, validations, and methods.
 
     should "scope to return only active organizations" do
-      assert_equal ["Carnegie Mellon University", "TAMU" ], Organization.active.map{|o| o.name}.sort
+     assert_equal ["Carnegie Mellon University", "TAMU" ], Organization.active.map{|o| o.name}.sort
     end
     should "scope to return only inactive organizations" do
       assert_equal ["Cornell Medicine"], Organization.inactive.map{|o| o.name}.sort
@@ -51,6 +51,16 @@ class OrganizationTest < ActiveSupport::TestCase
  
     should "have a scope to alphabetize organizations by name" do
       assert_equal ["Carnegie Mellon University", "Cornell Medicine", "TAMU"], Organization.alphabetical.map{|o| o.name}
+    end
+
+    should "have a method to make inactive" do
+      @tamu.make_inactive
+      assert_equal ["Cornell Medicine", "TAMU" ], Organization.inactive.map{|o| o.name}.sort
+    end
+
+    should "have a method to make active" do
+      @tamu.make_active
+      assert_equal ["Carnegie Mellon University", "TAMU" ], Organization.active.map{|o| o.name}.sort
     end
 
 

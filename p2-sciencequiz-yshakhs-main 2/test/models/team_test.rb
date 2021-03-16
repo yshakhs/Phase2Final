@@ -3,7 +3,7 @@ require 'test_helper'
 class TeamTest < ActiveSupport::TestCase
 
 #matchers
-should belong_to(:organizations)
+should belong_to(:organization)
 should have_many(:student_teams) 
 should have_many(:students).through(:student_teams)
 
@@ -55,6 +55,17 @@ should validate_inclusion_of(:division).in_array(["senior", "junior"])
     should "have a scope to show only senior divisions by order" do
       assert_equal ["engineer", "Team 1"], Team.seniors.alphabetical.map{|t| t.name}
     end
+
+    should "have a method to make inactive" do
+      @team2.make_inactive
+      assert_equal ["Team 1", "Team 2"], Team.inactive.alphabetical.map{|t| t.name}
+    end
+
+    should "have a method to make active" do
+      @team2.make_active
+      assert_equal ["engineer", "Team 1"], Team.active.alphabetical.map{|t| t.name}
+    end
+
 
    # should "have a scope to show teams in a specific organization" do
     #  assert_equal ["Mow grass", "Shovel driveway", "Sweep floor", "Wash dishes"], Task.active.alphabetical.map{|t| t.name}

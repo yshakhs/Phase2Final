@@ -2,8 +2,8 @@ require 'test_helper'
 
 class StudentTeamTest < ActiveSupport::TestCase
    #matchers
-   should belong_to(:students)
-   should belong_to(:teams)
+   should belong_to(:student)
+   should belong_to(:team)
    
    #validations
    should validate_presence_of(:position)
@@ -24,7 +24,6 @@ class StudentTeamTest < ActiveSupport::TestCase
    should_not allow_value(-2).for(:grade)
    should_not allow_value(0).for(:grade)
    should_not allow_value(22).for(:grade)
-   should_not allow_value().for(:grade)
    should_not allow_value(" ").for(:grade)
    should_not allow_value("seven").for(:grade)
  
@@ -78,6 +77,16 @@ class StudentTeamTest < ActiveSupport::TestCase
       assert_equal 0, StudentTeam.past.size
     end
     
+
+    should "have a method to make inactive" do
+      @studentTeam2.make_inactive
+      assert_equal [1, 3], StudentTeam.inactive.map{|t| t.position}.sort
+    end
+
+    should "have a method to make active" do
+      @studentTeam2.make_active
+      assert_equal [1, 5], StudentTeam.active.map{|t| t.position}.sort
+    end
 
     # test the custom validation 'student_is_active_in_system'
     should "identify a non-active student as invalid" do

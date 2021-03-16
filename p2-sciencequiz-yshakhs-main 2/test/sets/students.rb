@@ -8,9 +8,9 @@ module Contexts
         end
         
         def destroy_students
-            @student1.destroy
-            @student2.destroy
-            @student3.destroy
+            @student1.delete
+            @student2.delete
+            @student3.delete
         end
 
     end
