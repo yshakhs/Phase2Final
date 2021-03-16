@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_153202) do
+ActiveRecord::Schema.define(version: 2021_03_16_140039) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
@@ -26,37 +26,37 @@ ActiveRecord::Schema.define(version: 2021_03_12_153202) do
   end
 
   create_table "student_teams", force: :cascade do |t|
-    t.integer "student_id_id"
-    t.integer "team_id_id"
     t.date "start_date"
     t.date "end_date"
     t.integer "position"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id_id"], name: "index_student_teams_on_student_id_id"
-    t.index ["team_id_id"], name: "index_student_teams_on_team_id_id"
+    t.integer "student_id"
+    t.integer "team_id"
+    t.index ["student_id"], name: "index_student_teams_on_student_id"
+    t.index ["team_id"], name: "index_student_teams_on_team_id"
   end
 
   create_table "students", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.integer "grade"
-    t.integer "organization_id_id"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id_id"], name: "index_students_on_organization_id_id"
+    t.integer "organization_id"
+    t.index ["organization_id"], name: "index_students_on_organization_id"
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "organization_id_id"
     t.string "division"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["organization_id_id"], name: "index_teams_on_organization_id_id"
+    t.integer "organization_id"
+    t.index ["organization_id"], name: "index_teams_on_organization_id"
   end
 
 end

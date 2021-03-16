@@ -91,3 +91,167 @@ FOREIGN KEY ("organization_id_id")
   ↳ bin/rails:9
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to RemoveOrganizationIdIdFromTeams (20210316135445)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ateams" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "organization_id_id" integer DEFAULT NULL, "division" varchar DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_ateams_on_organization_id_id" ON "ateams" ("organization_id_id")[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "ateams" ("id","name","organization_id_id","division","active","created_at","updated_at")
+                     SELECT "id","name","organization_id_id","division","active","created_at","updated_at" FROM "teams"[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "teams"[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "teams" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "division" varchar DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "teams" ("id","name","division","active","created_at","updated_at")
+                     SELECT "id","name","division","active","created_at","updated_at" FROM "ateams"[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ateams"[0m
+  ↳ db/migrate/20210316135445_remove_organization_id_id_from_teams.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316135445"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to AddOrganizationToTeams (20210316135711)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "teams" ADD "organization_id" integer[0m
+  ↳ db/migrate/20210316135711_add_organization_to_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_teams_on_organization_id" ON "teams" ("organization_id")[0m
+  ↳ db/migrate/20210316135711_add_organization_to_teams.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316135711"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to RemoveOrganizationIdIdFromStudents (20210316135811)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "astudents" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "grade" integer DEFAULT NULL, "organization_id_id" integer DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_astudents_on_organization_id_id" ON "astudents" ("organization_id_id")[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "astudents" ("id","first_name","last_name","grade","organization_id_id","active","created_at","updated_at")
+                     SELECT "id","first_name","last_name","grade","organization_id_id","active","created_at","updated_at" FROM "students"[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "students"[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "students" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "grade" integer DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "students" ("id","first_name","last_name","grade","active","created_at","updated_at")
+                     SELECT "id","first_name","last_name","grade","active","created_at","updated_at" FROM "astudents"[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "astudents"[0m
+  ↳ db/migrate/20210316135811_remove_organization_id_id_from_students.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316135811"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to AddOrganizationToStudents (20210316135830)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "students" ADD "organization_id" integer[0m
+  ↳ db/migrate/20210316135830_add_organization_to_students.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_students_on_organization_id" ON "students" ("organization_id")[0m
+  ↳ db/migrate/20210316135830_add_organization_to_students.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316135830"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to RemoveStudentIdIdFromStudentTeams (20210316135920)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "astudent_teams" ("id" integer NOT NULL PRIMARY KEY, "student_id_id" integer DEFAULT NULL, "team_id_id" integer DEFAULT NULL, "start_date" date DEFAULT NULL, "end_date" date DEFAULT NULL, "position" integer DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_astudent_teams_on_team_id_id" ON "astudent_teams" ("team_id_id")[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_astudent_teams_on_student_id_id" ON "astudent_teams" ("student_id_id")[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "astudent_teams" ("id","student_id_id","team_id_id","start_date","end_date","position","active","created_at","updated_at")
+                     SELECT "id","student_id_id","team_id_id","start_date","end_date","position","active","created_at","updated_at" FROM "student_teams"[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "student_teams"[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "student_teams" ("id" integer NOT NULL PRIMARY KEY, "team_id_id" integer DEFAULT NULL, "start_date" date DEFAULT NULL, "end_date" date DEFAULT NULL, "position" integer DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_student_teams_on_team_id_id" ON "student_teams" ("team_id_id")[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "student_teams" ("id","team_id_id","start_date","end_date","position","active","created_at","updated_at")
+                     SELECT "id","team_id_id","start_date","end_date","position","active","created_at","updated_at" FROM "astudent_teams"[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "astudent_teams"[0m
+  ↳ db/migrate/20210316135920_remove_student_id_id_from_student_teams.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316135920"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to RemoveTeamIdIdFromStudentTeams (20210316135946)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "astudent_teams" ("id" integer NOT NULL PRIMARY KEY, "team_id_id" integer DEFAULT NULL, "start_date" date DEFAULT NULL, "end_date" date DEFAULT NULL, "position" integer DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135946_remove_team_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_astudent_teams_on_team_id_id" ON "astudent_teams" ("team_id_id")[0m
+  ↳ db/migrate/20210316135946_remove_team_id_id_from_student_teams.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "astudent_teams" ("id","team_id_id","start_date","end_date","position","active","created_at","updated_at")
+                     SELECT "id","team_id_id","start_date","end_date","position","active","created_at","updated_at" FROM "student_teams"[0m
+  ↳ db/migrate/20210316135946_remove_team_id_id_from_student_teams.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "student_teams"[0m
+  ↳ db/migrate/20210316135946_remove_team_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "student_teams" ("id" integer NOT NULL PRIMARY KEY, "start_date" date DEFAULT NULL, "end_date" date DEFAULT NULL, "position" integer DEFAULT NULL, "active" boolean DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20210316135946_remove_team_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "student_teams" ("id","start_date","end_date","position","active","created_at","updated_at")
+                     SELECT "id","start_date","end_date","position","active","created_at","updated_at" FROM "astudent_teams"[0m
+  ↳ db/migrate/20210316135946_remove_team_id_id_from_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "astudent_teams"[0m
+  ↳ db/migrate/20210316135946_remove_team_id_id_from_student_teams.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316135946"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to AddStudentToStudentTeams (20210316140020)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "student_teams" ADD "student_id" integer[0m
+  ↳ db/migrate/20210316140020_add_student_to_student_teams.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_student_teams_on_student_id" ON "student_teams" ("student_id")[0m
+  ↳ db/migrate/20210316140020_add_student_to_student_teams.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316140020"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+Migrating to AddTeamToStudentTeams (20210316140039)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "student_teams" ADD "team_id" integer[0m
+  ↳ db/migrate/20210316140039_add_team_to_student_teams.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_student_teams_on_team_id" ON "student_teams" ("team_id")[0m
+  ↳ db/migrate/20210316140039_add_team_to_student_teams.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210316140039"]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/yaraalshakhs/.rvm/gems/ruby-2.6.3/bin/rake:23
