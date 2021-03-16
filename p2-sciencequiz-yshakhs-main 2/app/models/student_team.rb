@@ -2,25 +2,33 @@ class StudentTeam < ApplicationRecord
   belongs_to :student
   belongs_to :team
 
-  validates_date :start_date
+  validates_date :start_date, on_or_before: -> {Date.current}
+
+ 
   validates_presence_of :position
   validates_presence_of :student_id, :team_id
+  validates :position, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 6 }
+
 
   validate :student_is_active_in_system
   validate :team_is_active_in_system
 
+
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
-  # scope :alphabetical, -> { joins(:student)order( 'last_name, first_name') }
+  scope :alphabetical, -> { joins(:student).order( 'last_name, first_name') }
   scope :chronological, -> {  order(start_date: :asc) }
   scope :by_position, -> { order('position') }
  
   scope :captains, -> { order(position) }
  
-  scope :for_team, -> (team){ joins(:team).where('name=?', team) }
-  scope :for_student, -> (student){ joins(:student).where('first_name=?', student) }
+   scope :for_team, -> (team){ joins(:team).where('team_id=?', team) }
+   scope :for_student, -> (student){ joins(:student).where('student_id=?', student) }
   scope :current, -> { where("end_date >=?",Date.current) }
   scope :past, -> { where("end_date <?", Date.current) }
+  scope :captains, -> { where(position: 1) }
+
+
 
   def make_active
     self.active=true
@@ -33,8 +41,7 @@ class StudentTeam < ApplicationRecord
       self.save!
   end
 
-  
-  
+   
   # Callback (to handle in sqlite what we would have done in a postrges trigger)
  # before_create :set_end_date_of_old_cost
 

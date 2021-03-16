@@ -14,7 +14,8 @@ class Team < ApplicationRecord
   scope :juniors, -> { where(division: 'junior') }
   scope :seniors, -> { where(division: 'senior') }
 
-  validates_inclusion_of :division, in: %w['junior', 'senior'], message: "is not an option"
+   Division = ['junior', 'senior']
+  validates_inclusion_of :division, in: Division, message: "is not an option", allow_blank: false
 
 
   def make_active
@@ -28,7 +29,7 @@ class Team < ApplicationRecord
       self.save!
   end
 
-  scope :for_organization, -> (organization) { joins(:organization).where('name=?', organization) }
+  scope :for_organization, -> (organization) { joins(:organization).where('organization_id =?', organization) }
 
   validate :organization_is_active_in_system
 

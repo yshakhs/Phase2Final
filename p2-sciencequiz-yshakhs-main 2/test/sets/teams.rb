@@ -9,9 +9,9 @@ module Contexts
         end
         
         def destroy_teams
-            @team1.delete
-            @team2.delete
-            @team3.delete
+            @team1.destroy
+            @team2.destroy
+            @team3.destroy
         end
     
     end

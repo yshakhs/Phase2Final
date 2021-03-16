@@ -32,12 +32,12 @@ should validate_inclusion_of(:division).in_array(["senior", "junior"])
     end 
 
     teardown do
-      destroy_organizations
       destroy_teams
+      destroy_organizations
     end
 
     should "have a scope to show active teams" do
-      assert_equal ["engineer", "Team 1"], Team.active.alphabetical.map{|t| t.name}
+      assert_equal ["Team 1", "engineer"], Team.active.alphabetical.map{|t| t.name}
     end
 
     should "have a scope to show inactive teams" do
@@ -45,7 +45,7 @@ should validate_inclusion_of(:division).in_array(["senior", "junior"])
     end
 
     should "have a scope to alphabetize teams by name" do
-      assert_equal ["engineer", "Team 1", "Team 2"], Team.alphabetical.map{|t| t.name}
+      assert_equal ["Team 1", "Team 2", "engineer"], Team.alphabetical.map{|t| t.name}
     end
 
     should "have a scope to show only junior divisions by order" do
@@ -53,7 +53,7 @@ should validate_inclusion_of(:division).in_array(["senior", "junior"])
     end
     
     should "have a scope to show only senior divisions by order" do
-      assert_equal ["engineer", "Team 1"], Team.seniors.alphabetical.map{|t| t.name}
+      assert_equal ["Team 1", "engineer"], Team.seniors.alphabetical.map{|t| t.name}
     end
 
     should "have a method to make inactive" do
@@ -63,13 +63,13 @@ should validate_inclusion_of(:division).in_array(["senior", "junior"])
 
     should "have a method to make active" do
       @team2.make_active
-      assert_equal ["engineer", "Team 1"], Team.active.alphabetical.map{|t| t.name}
+      assert_equal ["Team 1", "engineer"], Team.active.alphabetical.map{|t| t.name}
     end
 
 
-   # should "have a scope to show teams in a specific organization" do
-    #  assert_equal ["Mow grass", "Shovel driveway", "Sweep floor", "Wash dishes"], Task.active.alphabetical.map{|t| t.name}
-    #end
+    should "have a scope to show teams in a specific organization" do
+      assert_equal ["Team 1", "engineer"], Team.for_organization(1).map{|t| t.name}.sort
+    end
 
     # test the custom validation 'organization_is_active_in_system'
     should "identify a non-active organization as invalid" do

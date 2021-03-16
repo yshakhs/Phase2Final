@@ -9,9 +9,9 @@ module Contexts
         end
         
         def destroy_organizations
-            @tamu.delete
-            @cornell.delete
-            @cmu.delete
+            @tamu.destroy
+            @cornell.destroy
+            @cmu.destroy
         end
   
     end

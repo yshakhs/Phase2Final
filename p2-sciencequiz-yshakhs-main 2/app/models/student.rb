@@ -39,8 +39,9 @@ class Student < ApplicationRecord
   def current_team
 
   end
-
+ 
   def junior?
+    
   end
 
   def name
