@@ -1,11 +1,11 @@
 require 'test_helper'
 
 class StudentTeamTest < ActiveSupport::TestCase
-   #matchers
+  #matchers ensures that we have the correct relationships 
    should belong_to(:student)
    should belong_to(:team)
    
-   #validations
+  #validations ensures we have the correct validations in our original file
    should validate_presence_of(:position)
    should validate_presence_of(:student_id)
    should validate_presence_of(:team_id)
@@ -15,6 +15,8 @@ class StudentTeamTest < ActiveSupport::TestCase
    should allow_value(Date.current).for(:start_date)
    should_not allow_value("bad").for(:start_date)
    should_not allow_value(3.14159).for(:start_date)
+  #makes sure that it allows the correct values and doesnt allow the other wrong values for the start date
+
 
    should allow_value(5).for(:position)
    should allow_value(1).for(:position)
@@ -24,19 +26,20 @@ class StudentTeamTest < ActiveSupport::TestCase
    should_not allow_value(22).for(:position)
    should_not allow_value(" ").for(:position)
    should_not allow_value("three").for(:position)
- 
+   #makes sure that it allows the correct values and doesnt allow the other wrong values for positions 
+
   #context
 
 
   context "Given context" do 
-    setup do 
+    setup do #creating the student teams
       create_organizations
       create_teams
       create_students
-      create_student_teams
+      create_student_teams 
     end 
 
-    teardown do
+    teardown do # destroying ther student teams
       destroy_student_teams
       destroy_students
       destroy_teams
@@ -45,17 +48,21 @@ class StudentTeamTest < ActiveSupport::TestCase
 
     should "have a scope to show active student_teams" do
      assert_equal [1, 5], StudentTeam.active.map{|t| t.position}.sort
+        #scope should only return the list of active student teams  sorted by positions
+
     end
 
 
     should "have a scope to show inactive student_teams" do
       assert_equal [3], StudentTeam.inactive.map{|t| t.position}.sort
-    end
+       #scope should only return the list of inactive student teams sorted by positions
 
+    end
 
    should "have a scope to alphabetize student_teams by student last_ and first_name" do
       assert_equal [ 5, 1, 3], StudentTeam.alphabetical.map{|t| t.position}
     end
+    #scope should return the list of student teams sorted by last and first name if students alphebateically
 
 
     should "have a scope to chronological student_teams by start_date" do

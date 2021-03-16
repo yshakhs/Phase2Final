@@ -9,7 +9,7 @@ module Contexts
         end
         
         def destroy_teams
-            @team1.destroy
+            @team1.destroy #destoy team record
             @team2.destroy
             @team3.destroy
         end

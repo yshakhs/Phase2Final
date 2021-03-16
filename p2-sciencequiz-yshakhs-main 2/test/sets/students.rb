@@ -8,7 +8,7 @@ module Contexts
         end
         
         def destroy_students
-            @student1.destroy
+            @student1.destroy #destoy student record
             @student2.destroy
             @student3.destroy
         end

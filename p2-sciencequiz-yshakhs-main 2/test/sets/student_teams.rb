@@ -8,7 +8,7 @@ module Contexts
         end
         
         def destroy_student_teams
-            @studentTeam1.destroy
+            @studentTeam1.destroy #destoy student record
             @studentTeam2.destroy
             @studentTeam3.destroy
         end

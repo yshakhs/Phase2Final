@@ -26,12 +26,12 @@ should validate_inclusion_of(:division).in_array(["senior", "junior"])
 #context
 
   context "Given context" do 
-    setup do 
+    setup do  #creates the teams
       create_organizations
       create_teams
     end 
 
-    teardown do
+    teardown do #destroys them
       destroy_teams
       destroy_organizations
     end
@@ -39,10 +39,13 @@ should validate_inclusion_of(:division).in_array(["senior", "junior"])
     should "have a scope to show active teams" do
       assert_equal ["Team 1", "engineer"], Team.active.alphabetical.map{|t| t.name}
     end
+    #scope should only return the list of active teams sorted by name
 
     should "have a scope to show inactive teams" do
       assert_equal ["Team 2"], Team.inactive.alphabetical.map{|t| t.name}
     end
+    #scope should only return the list of inactive teams sorted by name
+
 
     should "have a scope to alphabetize teams by name" do
       assert_equal ["Team 1", "Team 2", "engineer"], Team.alphabetical.map{|t| t.name}

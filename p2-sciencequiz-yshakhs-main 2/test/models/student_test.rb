@@ -27,12 +27,12 @@ class StudentTest < ActiveSupport::TestCase
   #context
 
   context "Given context" do 
-    setup do 
+    setup do  #creates the students
       create_organizations
       create_students
     end 
 
-    teardown do
+    teardown do #destroys them
       destroy_students
       destroy_organizations
     end
@@ -40,14 +40,17 @@ class StudentTest < ActiveSupport::TestCase
     should "have a scope to show active students" do
       assert_equal ["Al-shakhs", "Al-zeyara"], Student.active.alphabetical.map{|t| t.last_name}
     end
+    #scope should only return the list of active students sorted by last name
 
     should "have a scope to show inactive students" do
       assert_equal ["Al-maadeed"], Student.inactive.alphabetical.map{|t| t.last_name}
     end
+    #scope should only return the list of inactive students sorted by last name
 
     should "have a scope to alphabetize teams by last_name and first_name" do
       assert_equal ["Al-maadeed", "Al-shakhs", "Al-zeyara"], Student.alphabetical.map{|t| t.last_name}
     end
+    #scope should return the list of students sorted by last and first name if students alphebateically
 
     should "have name methods that list last_ and first_names combined" do
       assert_equal "Al-shakhs Mai", @student1.name

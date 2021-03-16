@@ -10,3 +10,5 @@ FactoryBot.define do
       active { true }
     end
   end
+
+  #factory bot to create a default organization whenever organization is created with no values
